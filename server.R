@@ -14,7 +14,7 @@ server <- function(input, output) {
                "B" = c(NA, "T", "G", "C"),
                "Y" = c(NA, "T", NA, "C"),
                "N" = c("A", "T", "G", "C"),
-               "K" = c(NA, "T", NA, NA),
+               "K" = c(NA, "T", "G", NA),
                "A" = c("A", NA, NA, NA),
                "T" = c(NA, "T", NA, NA),
                "G" = c(NA, NA, "G", NA),
@@ -32,10 +32,10 @@ server <- function(input, output) {
   #   all_codons <- cbind(all_codons, data.frame(matrix(nrow = nrow(all_codons), ncol = 21, dimnames = list(1:nrow(all_codons), c(Biostrings::sort(AA_STANDARD), '*')))))
   #   colnames(all_codons)[24] <- '*'
   #   for (row in 1:nrow(all_codons)) {
-  #     pos1 <- as.character(deg_codons[all_codons[row,1],][!as.logical(is.na(deg_codons[all_codons[row,1],]))])
-  #     pos2 <- as.character(deg_codons[all_codons[row,2],][!as.logical(is.na(deg_codons[all_codons[row,2],]))])
-  #     pos3 <- as.character(deg_codons[all_codons[row,3],][!as.logical(is.na(deg_codons[all_codons[row,3],]))])
-  #     cods <- expand.grid(pos1, pos2, pos3)
+  #     cods <- expand.grid(as.character(deg_codons[all_codons[row,1],][!as.logical(is.na(deg_codons[all_codons[row,1],]))]), 
+  #                         as.character(deg_codons[all_codons[row,2],][!as.logical(is.na(deg_codons[all_codons[row,2],]))]), 
+  #                         as.character(deg_codons[all_codons[row,3],][!as.logical(is.na(deg_codons[all_codons[row,3],]))])
+  #                         )
   #     cods$aa <- apply(cods,1, function(x) Biostrings::translate(DNAString(paste0(x, collapse = ''))) %>% as.character())
   #     countaas <- table(sort(cods$aa))
   #     all_codons[row, which(colnames(all_codons) %in% names(countaas))] <- countaas
